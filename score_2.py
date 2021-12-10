@@ -16,11 +16,11 @@ def init():
 def run(request):
     print(request)
     data = json.loads(request)
-    
+    var_inputs = sess.get_inputs()[0].name
     # Run inference
     test = sess.run(
         None,
-        data,
+        {var_inputs: data}
     )
     
     print(test)
