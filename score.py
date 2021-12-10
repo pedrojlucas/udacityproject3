@@ -28,7 +28,7 @@ def init():
 # run() method parses and validates the incoming payload against
 # the example input you provide here. This will also generate a Swagger
 # API document for your web service.
-@input_schema('data', NumpyParameterType(np.array([[40, 'M', 'NAP', 160, 180, 0, 'Normal', 178, 'N', 0, 'Up']])))
+@input_schema('data', NumpyParameterType(np.array([40, 'M', 'NAP', 160, 180, 0, 'Normal', 178, 'N', 0, 'Up'])))
 @output_schema(NumpyParameterType(np.array([0])))
 def run(data):
     # Use the model object loaded by init().

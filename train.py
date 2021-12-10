@@ -27,7 +27,10 @@ def clean_data(data):
     restingecg = pd.get_dummies(x_df['RestingECG'], prefix="RestingECG")
     x_df.drop("RestingECG", inplace=True, axis=1)
     x_df = x_df.join(restingecg)
-        
+    stslope = pd.get_dummies(x_df['ST_Slope'], prefix='ST_Slope')
+    x_df.drop("ST_Slope", inplace=True, axis=1)
+    x_df.join(stslope)
+
     y_df = x_df.pop("HeartDisease")
 
     return x_df, y_df
@@ -59,8 +62,8 @@ def main():
     run.log("Max iterations:", np.int(args.max_iter))
 
     model = LogisticRegression(C=args.C, max_iter=args.max_iter).fit(x_train, y_train)
-
-    auc = roc_auc_score(x_test, y_test)
+    y_pred = model.predict(x_test)
+    auc = roc_auc_score(y_pred, y_test)
     run.log("AUC", np.float(auc))
 
 if __name__ == '__main__':
