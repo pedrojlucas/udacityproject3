@@ -20,8 +20,8 @@ def run(request):
     # Run inference
     test = sess.run(
         None,
-        {"query_word": qw, "query_char": qc, "context_word": cw, "context_char": cc},
+        data,
     )
     
-    print(ans)
-    return ans
+    print(test)
+    return test

@@ -27,7 +27,10 @@ def clean_data(data):
     restingecg = pd.get_dummies(x_df['RestingECG'], prefix="RestingECG")
     x_df.drop("RestingECG", inplace=True, axis=1)
     x_df = x_df.join(restingecg)
-        
+    stslope = pd.get_dummies(x_df['ST_Slope'], prefix='ST_Slope')
+    x_df.drop("ST_Slope", inplace=True, axis=1)
+    x_df.join(stslope)
+
     y_df = x_df.pop("HeartDisease")
 
     return x_df, y_df
@@ -37,7 +40,7 @@ def main():
     
     # Create pandas dataframe from 'heart.csv' data file.
 
-    ds = pd.read('./heart.csv')
+    ds = pd.read_csv('./heart.csv')
 
     x, y = clean_data(ds)
 
