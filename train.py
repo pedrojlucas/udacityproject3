@@ -37,7 +37,7 @@ def main():
     
     # Create pandas dataframe from 'heart.csv' data file.
 
-    ds = pd.read('./heart.csv')
+    ds = pd.read_csv('./heart.csv')
 
     x, y = clean_data(ds)
 
@@ -60,7 +60,7 @@ def main():
 
     model = LogisticRegression(C=args.C, max_iter=args.max_iter).fit(x_train, y_train)
 
-    auc = model.roc_auc_score(x_test, y_test)
+    auc = roc_auc_score(x_test, y_test)
     run.log("AUC", np.float(auc))
 
 if __name__ == '__main__':
