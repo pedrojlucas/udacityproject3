@@ -63,7 +63,7 @@ def main():
 
     model = LogisticRegression(C=args.C, max_iter=args.max_iter).fit(x_train, y_train)
     y_pred = model.predict(x_test)
-    auc = roc_auc_score(y_pred, y_test)
+    auc = roc_auc_score(y_pred, y_test, average='weighted')
     run.log("AUC", np.float(auc))
 
 if __name__ == '__main__':
