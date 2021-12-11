@@ -8,8 +8,8 @@ def init():
 
     # depending on whether we use automl/hyperdrive, uncomment accordingly
     try: 
-        # model_path = Model.get_model_path('credit_hyperdrive_model')
-        model_path = Model.get_model_path('credit_default_automl_model')
+        # model_path = Model.get_model_path('my-udacityproj3-hyperdrivemodel')
+        model_path = Model.get_model_path('my-udacityproj3-automlmodel')
         model = joblib.load(model_path)
     except Exception as err:
         print('init method error: ' + str(err))
