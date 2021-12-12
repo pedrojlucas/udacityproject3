@@ -16,9 +16,12 @@ def init():
 
 def run(data):
     try:
+        # model_path = Model.get_model_path('my-udacityproj3-hyperdrivemodel')
+        model_path = Model.get_model_path('my-udacityproj3-automlmodel')
+        model = joblib.load(model_path)
         data = pd.DataFrame(json.loads(data)['data'])
         result = model.predict(data)
         return result.tolist()
     except Exception as e:
-        error = str(e)
+        error = 'Run Error: ' + str(e)
         return error
