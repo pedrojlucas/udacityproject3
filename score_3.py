@@ -10,20 +10,26 @@ def init():
 
     # depending on whether we use automl/hyperdrive, uncomment accordingly
     try: 
+        print('Initializing model instance as webservice...')
         # model_path = Model.get_model_path('my-udacityproj3-hyperdrivemodel')
         model_path = Model.get_model_path('my-udacityproj3-automlmodel')
         model = joblib.load(model_path)
+        print('Init done... enjoy inferencing!!')
     except Exception as err:
         print('init method error: ' + str(err))
 
 def run(data):
     try:
         # model_path = Model.get_model_path('my-udacityproj3-hyperdrivemodel')
+        print('Launching inference...')
         model_path = Model.get_model_path('my-udacityproj3-automlmodel')
         model = joblib.load(model_path)
         data = pd.DataFrame(json.loads(data)['data'], columns=cols)
         result = model.predict(data)
+        print('Inference done...')
+        print('Results from inference:', result.tolist())
         return result.tolist()
     except Exception as e:
         error = 'Run Error: ' + str(e)
+        print(error)
         return error
