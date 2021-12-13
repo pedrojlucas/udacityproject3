@@ -18,6 +18,10 @@ For the Hyperdrive tuning it is necessary to have an auxiliary python script for
 
 The used dataset for this project is a Kaggle public domain dataset that is focused in detecting the tendency to suffer a heart disease from certain features related with the health status of a number of patients. The url for accessing the dataset is https://www.kaggle.com/johnsmith88/heart-disease-dataset.
 
+### Task
+
+The task that I am developing is a classification task where I will try to ask the question "Are this patient going to suffer heart disease?" based on the different features present in the dataset.
+
 The label of the dataset is "Heartdisease" which can be 0 (no heart disease) or 1 (the patient suffers heart disease), and the different features that are included in the dataset:
 
 1. age
@@ -34,12 +38,11 @@ The label of the dataset is "Heartdisease" which can be 0 (no heart disease) or 
 12. number of major vessels (0-3) colored by flourosopy
 13. thal: 0 = normal; 1 = fixed defect; 2 = reversable defect
 
-### Task
-
-The task that I am developing is a classification task where I will try to ask the question "Are this patient going to suffer heart disease?" based on the different features present in the dataset.
-
 ### Access
-*TODO*: Explain how you are accessing the data in your workspace.
+
+I have downloaded the dataset from Kaggle to my github account and I have added it to this project repository so it is not needed to have a Kaggle account and the dataset can be accessed the in two ways:
+
+1.- The dataset file can be downloaded with the rest of the files from the github repository and then uploaded to Azure ML account folder where it can be accessed and generate a Dataset in Azure.
 
 ## Automated ML
 *TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
