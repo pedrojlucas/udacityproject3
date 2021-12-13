@@ -40,9 +40,10 @@ The label of the dataset is "Heartdisease" which can be 0 (no heart disease) or 
 
 ### Access
 
-I have downloaded the dataset from Kaggle to my github account and I have added it to this project repository so it is not needed to have a Kaggle account and the dataset can be accessed the in two ways:
+I have downloaded the dataset from Kaggle to my github account and I have added it to this project repository so it is not needed to have a Kaggle account and the dataset can be accessed then in two ways:
 
-1.- The dataset file can be downloaded with the rest of the files from the github repository and then uploaded to Azure ML account folder where it can be accessed and generate a Dataset in Azure.
+1.- The dataset file can be downloaded with the rest of the files from the github repository and then uploaded to Azure ML account folder where it can be accessed and register the Dataset in Azure.
+2.- Directly accessing the file through http request to https://github.com/pedrojlucas/udacityproject3/blob/main/heart.csv and create a TabularDataset object in Azure ML.
 
 ## Automated ML
 *TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
@@ -65,10 +66,11 @@ I have downloaded the dataset from Kaggle to my github account and I have added 
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
 
 ## Screen Recording
-*TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
-- A working model
-- Demo of the deployed  model
-- Demo of a sample request sent to the endpoint and its response
+
+I have recorded a video showing the different results obtained for the AutoML model. The link for the video on Youtube is https://youtu.be/LB6NQAejPRk
 
 ## Standout Suggestions
-*TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.
+
+I have implemented some additional logs for the deployed models. I have activated the 'Application Insights' as an option for the deployment of the model, and in the scoring script used for the initialization and serving of the model I have put some print statements for showing in the logs different information as: model initialization success or failure, start of the inference process and end of inference process and also the results.
+
+We can see here a couple of screenshots showing this logs:
