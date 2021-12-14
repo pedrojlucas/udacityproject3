@@ -58,33 +58,26 @@ For the AutoML experiments I am following the next steps:
 
 I am using the following configuration for the AutoML experiment, the automl_settings are the general parameters for this experiment as the primary metric, number of cross validation, number of iterations allowed and the early stopping, on the other hand the automl_config is providing what dataset is using, and where is executing the training of the models.
 
-automl_settings = {
-       "n_cross_validations": 5,
-       "primary_metric": 'AUC_weighted',
-       "enable_early_stopping": True,
-       "experiment_timeout_hours": 1.0,
-       "iterations" : 10,
-       "max_concurrent_iterations": 5,
-       "max_cores_per_iteration": -1,
-       "enable_onnx_compatible_models": True,
-       "blocked_models": ['XGBoostClassifier'],
-       "verbosity": logging.INFO}
-
-automl_config = AutoMLConfig(task = 'classification',
-                               compute_target = cluster_name,
-                               training_data = dataset,
-                               label_column_name = 'HeartDisease',
-                               **automl_settings)
-
-
+![automl_configuration](/screenshots/automl_config_details.jpg)
+I am using Area Under the Curve (AUC) as primary metric, this metric has advantages over other metrics like accuracy for our classification task, as it does not depend on the balance between the labels I need to predict. I have also chosen 5 folds for the cross validation in order to assure that I have representative results.
+I have selected some options to get a good trade-off between good results and not consume too many compute resources, those are: enable early stopping, iterations, experiment_timeout.
 
 ### Results
-*TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
+After running the experiment for the AutoML, we have the best model:
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+![automl_run_widget](/screenshots/automl_runwidget.jpg)
+
+The best model is the 'VotingEnsemble' model with an AUC of 0,936.
+
+![automl_best_model](/screenshots/automl_bestmodel_runid.jpg)
+
+In the previous screenshots we can see other metrics apart from the AUC weighted used for measure the perfomance of our model, we can see the accuracy and the precision too.
+
+I have deployed this model as a webservice so it can be consumed for predictions, I am showing this deployment process in a separate chapter in this readme file.
 
 ## Hyperparameter Tuning
-*TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
+
+In this case 
 
 
 ### Results
