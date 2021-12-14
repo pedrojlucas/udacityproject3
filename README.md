@@ -79,7 +79,7 @@ I have deployed this model as a webservice so it can be consumed for predictions
 
 In this case I have chosen a Logistic Regression model for our classification task, I have tried to maximize the metric AUC weighted as I have done previosuly with the AutoML experiment. For achieving the best hyperparameters I have used Hyperdrive with the following parameters for its configuration:
 
-![Hyperdrive_config](/screenshots/hyperdrive_config.jpg)
+![Hyperdrive_config](/screenshots/Hyperdrive_config.jpg)
 
 
 
