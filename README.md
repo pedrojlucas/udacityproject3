@@ -69,6 +69,8 @@ After running the experiment for the AutoML, we have the best model:
 
 The best model is the 'VotingEnsemble' model with an AUC of 0,936.
 
+![automl_auc_trend](/screenshots/automl_auc_trend.jpg)
+
 ![automl_best_model](/screenshots/automl_bestmodel_runid.jpg)
 
 In the previous screenshots we can see other metrics apart from the AUC weighted used for measure the perfomance of our model, we can see the accuracy and the precision too.
@@ -102,7 +104,10 @@ And finally, as we have also done with our AutoML model, we have registered the 
 ![hyperdrive_modelregistered](/screenshots/Hyperdrive_bestmodelUI.jpg)
 
 ## Model Deployment
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
+
+![automl_active_endpoint](/screenshots/automl_endpoint_active.jpg)
+
+![automl_webservice_response](/screenshot/automl_webservice_response.jpg)
 
 ## Screen Recording
 
