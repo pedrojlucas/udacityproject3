@@ -43,7 +43,9 @@ The label of the dataset is "Heartdisease" which can be 0 (no heart disease) or 
 I have downloaded the dataset from Kaggle to my github account and I have added it to this project repository so it is not needed to have a Kaggle account and the dataset can be accessed then in two ways:
 
 1.- The dataset file can be downloaded with the rest of the files from the github repository and then uploaded to Azure ML account folder where it can be accessed and register the Dataset in Azure.
-2.- Directly accessing the file through http request to https://github.com/pedrojlucas/udacityproject3/blob/main/heart.csv and create a TabularDataset object in Azure ML.
+2.- Directly accessing the file through http request to https://github.com/pedrojlucas/udacityproject3/blob/main/heart.csv and create a TabularDataset object in Azure ML, as I have configured this repository as public.
+
+In the notebooks in the repository I have used the way number 1 in order to configure this project as stand-alone and reproducible as possible.
 
 ## Automated ML
 
