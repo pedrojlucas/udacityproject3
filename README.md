@@ -74,3 +74,7 @@ I have recorded a video showing the different results obtained for the AutoML mo
 I have implemented some additional logs for the deployed models. I have activated the 'Application Insights' as an option for the deployment of the model, and in the scoring script used for the initialization and serving of the model I have put some print statements for showing in the logs different information as: model initialization success or failure, start of the inference process and end of inference process and also the results.
 
 We can see here a couple of screenshots showing this logs:
+
+![Webservice init logs](/screenshots/automl_logs_webservice1.jpg)
+
+![Webservice_inference_logs](/screenshots/automl_logs_webservice2.jpg)
