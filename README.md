@@ -67,9 +67,9 @@ After running the experiment for the AutoML, we have the best model:
 
 ![automl_run_widget](/screenshots/automl_runwidget.jpg)
 
-The best model is the 'VotingEnsemble' model with an AUC of 0,936.
-
 ![automl_auc_trend](/screenshots/automl_auc_trend.jpg)
+
+The best model is the 'VotingEnsemble' model with an AUC of 0,936.
 
 ![automl_best_model](/screenshots/automl_bestmodel_runid.jpg)
 
@@ -105,7 +105,13 @@ And finally, as we have also done with our AutoML model, we have registered the 
 
 ## Model Deployment
 
+I have done two models deployment, one in a custom environment (this is the case of the AutoML model described previously) and the other one using a Scikit-Learn default environment available in Azure ML (in this case is for the Logistic Regression tuned with Hyperdrive).
+
+The custom environment is provisioned with all the necessary dependencies and using a custom score python script to initialize the model webservice and to make the predictions. The conda dependecies setup file (in YAML format) is generated on the fly when the notebook is executed.
+
 ![automl_active_endpoint](/screenshots/automl_endpoint_active.jpg)
+
+Once we have generated the webservice for the model endpoint, we can test it with some data from our dataset. As we can see in the following screenshot we get a response from the webservice with two predictions.
 
 ![automl_webservice_response](/screenshot/automl_webservice_response.jpg)
 
