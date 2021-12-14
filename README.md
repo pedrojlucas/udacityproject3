@@ -43,10 +43,40 @@ The label of the dataset is "Heartdisease" which can be 0 (no heart disease) or 
 I have downloaded the dataset from Kaggle to my github account and I have added it to this project repository so it is not needed to have a Kaggle account and the dataset can be accessed then in two ways:
 
 1.- The dataset file can be downloaded with the rest of the files from the github repository and then uploaded to Azure ML account folder where it can be accessed and register the Dataset in Azure.
-2.- Directly accessing the file through http request to https://github.com/pedrojlucas/udacityproject3/blob/main/heart.csv and create a TabularDataset object in Azure ML.
+2.- Directly accessing the file through http request to https://github.com/pedrojlucas/udacityproject3/blob/main/heart.csv and create a TabularDataset object in Azure ML, as I have configured this repository as public.
+
+In the notebooks in the repository I have used the way number 1 in order to configure this project as stand-alone and reproducible as possible.
 
 ## Automated ML
-*TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
+
+For the AutoML experiments I am following the next steps:
+
+1. Create a compute cluster for all the works regarding the training of the models.
+2. Access the dataset as described in the previous point of this readme.
+3. Configure the AutoML experiment using the automl_settings and automl_config presented in the next paragraphs.
+4. Run the experiment.
+
+I am using the following configuration for the AutoML experiment, the automl_settings are the general parameters for this experiment as the primary metric, number of cross validation, number of iterations allowed and the early stopping, on the other hand the automl_config is providing what dataset is using, and where is executing the training of the models.
+
+automl_settings = {
+       "n_cross_validations": 5,
+       "primary_metric": 'AUC_weighted',
+       "enable_early_stopping": True,
+       "experiment_timeout_hours": 1.0,
+       "iterations" : 10,
+       "max_concurrent_iterations": 5,
+       "max_cores_per_iteration": -1,
+       "enable_onnx_compatible_models": True,
+       "blocked_models": ['XGBoostClassifier'],
+       "verbosity": logging.INFO}
+
+automl_config = AutoMLConfig(task = 'classification',
+                               compute_target = cluster_name,
+                               training_data = dataset,
+                               label_column_name = 'HeartDisease',
+                               **automl_settings)
+
+
 
 ### Results
 *TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
@@ -71,6 +101,10 @@ I have recorded a video showing the different results obtained for the AutoML mo
 
 ## Standout Suggestions
 
-I have implemented some additional logs for the deployed models. I have activated the 'Application Insights' as an option for the deployment of the model, and in the scoring script used for the initialization and serving of the model I have put some print statements for showing in the logs different information as: model initialization success or failure, start of the inference process and end of inference process and also the results.
+I have implemented some additional logs for the deployed models. I have activated the 'Application Insights' as an option for the deployment of the model, and in the scoring script, used for the initialization and serving of the model, I have put some print statements for showing in the logs different information as: model initialization success or failure, start of the inference process and end of inference process and also the results.
 
 We can see here a couple of screenshots showing this logs:
+
+![Webservice init logs](/screenshots/automl_logs_webservice1.jpg)
+
+![Webservice_inference_logs](/screenshots/automl_logs_webservice2.jpg)
