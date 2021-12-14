@@ -59,18 +59,17 @@ For the AutoML experiments I am following the next steps:
 I am using the following configuration for the AutoML experiment, the automl_settings are the general parameters for this experiment as the primary metric, number of cross validation, number of iterations allowed and the early stopping, on the other hand the automl_config is providing what dataset is using, and where is executing the training of the models.
 
 ![automl_configuration](/screenshots/automl_config_details.jpg)
-
 I am using Area Under the Curve (AUC) as primary metric, this metric has advantages over other metrics like accuracy for our classification task, as it does not depend on the balance between the labels I need to predict. I have also chosen 5 folds for the cross validation in order to assure that I have representative results.
 I have selected some options to get a good trade-off between good results and not consume too many compute resources, those are: enable early stopping, iterations, experiment_timeout.
 
 ### Results
 After running the experiment for the AutoML, we have the best model:
 
-[automl_run_widget](/screenshots/automl_runwidget.jpg)
+![automl_run_widget](/screenshots/automl_runwidget.jpg)
 
 The best model is the 'VotingEnsemble' model with an AUC of 0.93.
 
-[automl_best_model](/screenshots/automl_bestmodel_runid.jpg)
+![automl_best_model](/screenshots/automl_bestmodel_runid.jpg)
 
 ## Hyperparameter Tuning
 *TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
