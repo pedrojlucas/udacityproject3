@@ -67,12 +67,17 @@ After running the experiment for the AutoML, we have the best model:
 
 ![automl_run_widget](/screenshots/automl_runwidget.jpg)
 
-The best model is the 'VotingEnsemble' model with an AUC of 0.93.
+The best model is the 'VotingEnsemble' model with an AUC of 0,936.
 
 ![automl_best_model](/screenshots/automl_bestmodel_runid.jpg)
 
+In the previous screenshots we can see other metrics apart from the AUC weighted used for measure the perfomance of our model, we can see the accuracy and the precision too.
+
+I have deployed this model as a webservice so it can be consumed for predictions, I am showing this deployment process in a separate chapter in this readme file.
+
 ## Hyperparameter Tuning
-*TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
+
+In this case 
 
 
 ### Results
