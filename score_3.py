@@ -8,10 +8,9 @@ cols = ['Age', 'Sex', 'ChestPainType', 'RestingBP', 'Cholesterol', 'FastingBS', 
 def init():
     global model
 
-    # depending on whether we use automl/hyperdrive, uncomment accordingly
+    # Capture the errors just in case to make easier the debugging.
     try: 
         print('Initializing model instance as webservice...')
-        # model_path = Model.get_model_path('my-udacityproj3-hyperdrivemodel')
         model_path = Model.get_model_path('my-udacityproj3-automlmodel')
         model = joblib.load(model_path)
         print('Init done... enjoy inferencing!!')
@@ -20,7 +19,6 @@ def init():
 
 def run(data):
     try:
-        # model_path = Model.get_model_path('my-udacityproj3-hyperdrivemodel')
         print('Launching inference...')
         model_path = Model.get_model_path('my-udacityproj3-automlmodel')
         model = joblib.load(model_path)
