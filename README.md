@@ -113,7 +113,7 @@ The custom environment is provisioned with all the necessary dependencies and us
 
 Once we have generated the webservice for the model endpoint, we can test it with some data from our dataset. As we can see in the following screenshot we get a response from the webservice with two predictions.
 
-![automl_webservice_response](/screenshot/automl_webservice_response.jpg)
+![automl_webservice_response](/screenshots/automl_webservice_response.jpg)
 
 ## Screen Recording
 
