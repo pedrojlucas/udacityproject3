@@ -73,6 +73,8 @@ The best model is the 'VotingEnsemble' model with an AUC of 0,936.
 
 In the previous screenshots we can see other metrics apart from the AUC weighted used for measure the perfomance of our model, we can see the accuracy and the precision too.
 
+Some improvement margin over this model is possible using more iterations for testing more models and maybe also trying to get more data combining this dataset with others of similar characteristics.
+
 I have deployed this model as a webservice so it can be consumed for predictions, I am showing this deployment process in a separate chapter in this readme file.
 
 ## Hyperparameter Tuning
@@ -81,12 +83,23 @@ In this case I have chosen a Logistic Regression model for our classification ta
 
 ![Hyperdrive_config](/screenshots/Hyperdrive_config.jpg)
 
+I have configured a random sampling for getting the best hyperparameters of the model, in this case the hyperparameters optimized are the maximum number of iterations (max_iter) and the inverse of regularization strength (C). This random sampling is able to get good results within a reasonable time and with not consuming too many compute resources.
 
+I have also set up a early stopping policy, in this case a bandit early stopping policy that will avoid taking too much time testing optimizations that will not get improvements over the best found solution until that moment.
 
 ### Results
-*TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+I have run the Hyperdrive experiment in order to get the best hyperparameters for this Logistic Regression model:
+
+![hyperdrive_runwidget](/screenshots/Hyperdrive_runwidget.jpg)
+
+The model with the best hyperparameters gets an AUC weighted metric of 0,828. The best hyperparameters are shown in the next screenshot:
+
+![hyperdrive_bestparameters](/screenshots/Hyperdrive_bestmodelparams.jpg)
+
+And finally, as we have also done with our AutoML model, we have registered the model in the Azure ML environment:
+
+![hyperdrive_modelregistered](/screenshots/Hyperdrive_bestmodelUI.jpg)
 
 ## Model Deployment
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
