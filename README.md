@@ -103,17 +103,39 @@ And finally, as we have also done with our AutoML model, we have registered the 
 
 ![hyperdrive_modelregistered](/screenshots/Hyperdrive_bestmodelUI.jpg)
 
+In order to get a better model:
+
+- Try some feature engineering techniques.
+- Try to increase the number of hyperparameters to optimize.
+- Rise the number of iterations for the Hyperdrive hyperparameter optimization.
+- Try some more sophisticated algorithms. I can increase accuracy at the cost of getting a more black-box like model.
+
 ## Model Deployment
 
 I have done two models deployment, one in a custom environment (this is the case of the AutoML model described previously) and the other one using a Scikit-Learn default environment available in Azure ML (in this case is for the Logistic Regression tuned with Hyperdrive).
 
 The custom environment is provisioned with all the necessary dependencies and using a custom score python script to initialize the model webservice and to make the predictions. The conda dependecies setup file (in YAML format) is generated on the fly when the notebook is executed.
 
+With the model registered, the environment allocated and the python score script prepared, I can proceed with the model deploy using the proper configuration options:
+
+![automl_model_deploy_config](/screenshots/automl_model_deploy_config.jpg)
+
+Once the deployment process finishes we can see the model endpoint as active:
 ![automl_active_endpoint](/screenshots/automl_endpoint_active.jpg)
 
-Once we have generated the webservice for the model endpoint, we can test it with some data from our dataset. As we can see in the following screenshot we get a response from the webservice with two predictions.
+An after I have generated the webservice for the model endpoint, I can test it with some data from our dataset. As we can see in the following screenshot we get a response from the webservice with two predictions.
 
 ![automl_webservice_response](/screenshots/automl_webservice_response.jpg)
+
+I have also tested the deployment in a Azure default environment with Scikit-learn (more information about Azure curated environments here: https://docs.microsoft.com/en-us/azure/machine-learning/concept-prebuilt-docker-images-inference#list-of-prebuilt-docker-images-for-inference). In this case a score script is not needed and a YAML configuration file either, so all this work is done by Azure only specifying the model_framework option as Model.Framework.SCIKITLEARN on the model registering configuration.
+
+So doing the model deployment in this way I have also got an active webservice endpoint for the Scikit-learn model tuned by Hyperdrive:
+
+![hyperdrive_endpoint](/screenshots/Hyperdrive_endpoint_active.jpg)
+
+And I have been able to check the model endpoint getting some predictions, in this case the returned predictions come in the form of probabilites of belonging to one of the two labels I am predicting with the model.
+
+![hyperdrive_predictions](/screenshots/Hyperdrive_webservice_response.jpg)
 
 ## Screen Recording
 
