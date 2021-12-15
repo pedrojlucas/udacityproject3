@@ -67,26 +67,53 @@ After running the experiment for the AutoML, we have the best model:
 
 ![automl_run_widget](/screenshots/automl_runwidget.jpg)
 
+![automl_auc_trend](/screenshots/automl_auc_trend.jpg)
+
 The best model is the 'VotingEnsemble' model with an AUC of 0,936.
 
 ![automl_best_model](/screenshots/automl_bestmodel_runid.jpg)
 
 In the previous screenshots we can see other metrics apart from the AUC weighted used for measure the perfomance of our model, we can see the accuracy and the precision too.
 
+Some improvement margin over this model is possible using more iterations for testing more models and maybe also trying to get more data combining this dataset with others of similar characteristics.
+
 I have deployed this model as a webservice so it can be consumed for predictions, I am showing this deployment process in a separate chapter in this readme file.
 
 ## Hyperparameter Tuning
 
-In this case 
+In this case I have chosen a Logistic Regression model for our classification task, I have tried to maximize the metric AUC weighted as I have done previosuly with the AutoML experiment. For achieving the best hyperparameters I have used Hyperdrive with the following parameters for its configuration:
 
+![Hyperdrive_config](/screenshots/Hyperdrive_config.jpg)
+
+I have configured a random sampling for getting the best hyperparameters of the model, in this case the hyperparameters optimized are the maximum number of iterations (max_iter) and the inverse of regularization strength (C). This random sampling is able to get good results within a reasonable time and with not consuming too many compute resources.
+
+I have also set up a early stopping policy, in this case a bandit early stopping policy that will avoid taking too much time testing optimizations that will not get improvements over the best found solution until that moment.
 
 ### Results
-*TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+I have run the Hyperdrive experiment in order to get the best hyperparameters for this Logistic Regression model:
+
+![hyperdrive_runwidget](/screenshots/Hyperdrive_runwidget.jpg)
+
+The model with the best hyperparameters gets an AUC weighted metric of 0,828. The best hyperparameters are shown in the next screenshot:
+
+![hyperdrive_bestparameters](/screenshots/Hyperdrive_bestmodelparams.jpg)
+
+And finally, as we have also done with our AutoML model, we have registered the model in the Azure ML environment:
+
+![hyperdrive_modelregistered](/screenshots/Hyperdrive_bestmodelUI.jpg)
 
 ## Model Deployment
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
+
+I have done two models deployment, one in a custom environment (this is the case of the AutoML model described previously) and the other one using a Scikit-Learn default environment available in Azure ML (in this case is for the Logistic Regression tuned with Hyperdrive).
+
+The custom environment is provisioned with all the necessary dependencies and using a custom score python script to initialize the model webservice and to make the predictions. The conda dependecies setup file (in YAML format) is generated on the fly when the notebook is executed.
+
+![automl_active_endpoint](/screenshots/automl_endpoint_active.jpg)
+
+Once we have generated the webservice for the model endpoint, we can test it with some data from our dataset. As we can see in the following screenshot we get a response from the webservice with two predictions.
+
+![automl_webservice_response](/screenshots/automl_webservice_response.jpg)
 
 ## Screen Recording
 
