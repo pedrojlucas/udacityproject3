@@ -4,6 +4,10 @@ This is the final assigment of the Udacity Machine Learning using Azure nanodegr
 
 In this project I will get a public domain dataset from Kaggle.com and I will train a model using two different methods provided in the Azure ML framework, the first one will be AutoML and the second one will be an standard Scikit-Learn model which hyperparameters will be tuned using Hyperdrive. I will create the necessary experiments for this training and hyperparameter tunings in both cases using the Azure ML Python SDK. Once I have the models trained I will deploy one of them as a webservice and use it to generate some predictions.
 
+An scheme of the architecture of this project is shown:
+
+![Architecture_scheme](/screenshots/Architecture_scheme.jpg)
+
 ## Project Set Up and Installation
 
 As I stated before I will use the Azure ML Python SDK through Jupyter Notebooks. One notebook for the AutoML model training and deployment and other notebook for the scikit-learn model with additional hyperparameter tuning using Hyperdrive.
@@ -75,8 +79,6 @@ The best model is the 'VotingEnsemble' model with an AUC of 0,936.
 
 In the previous screenshots we can see other metrics apart from the AUC weighted used for measure the perfomance of our model, we can see the accuracy and the precision too.
 
-Some improvement margin over this model is possible using more iterations for testing more models and maybe also trying to get more data combining this dataset with others of similar characteristics.
-
 I have deployed this model as a webservice so it can be consumed for predictions, I am showing this deployment process in a separate chapter in this readme file.
 
 ## Hyperparameter Tuning
@@ -102,13 +104,6 @@ The model with the best hyperparameters gets an AUC weighted metric of 0,828. Th
 And finally, as we have also done with our AutoML model, we have registered the model in the Azure ML environment:
 
 ![hyperdrive_modelregistered](/screenshots/Hyperdrive_bestmodelUI.jpg)
-
-In order to get a better model:
-
-- Try some feature engineering techniques.
-- Try to increase the number of hyperparameters to optimize.
-- Rise the number of iterations for the Hyperdrive hyperparameter optimization.
-- Try some more sophisticated algorithms. I can increase accuracy at the cost of getting a more black-box like model.
 
 ## Model Deployment
 
@@ -150,3 +145,23 @@ We can see here a couple of screenshots showing this logs:
 ![Webservice init logs](/screenshots/automl_logs_webservice1.jpg)
 
 ![Webservice_inference_logs](/screenshots/automl_logs_webservice2.jpg)
+
+## Next steps and improvements
+
+From the point of view of achieving better models, there are several improvements that can be tried for the AutoML model and for the Hyperdrive optimized model:
+
+In order to get a better model:
+
+- Try some feature engineering techniques.
+- Rise the number of iterations.
+- Get more data from other sources to complement the current dataset and increase the accuracy of the model.
+
+In the case of the Scikit-learn model we can also try more sophisticated models based on decision trees for instance or maybe a Support Vector Machines to compare the results and check if we increase the primary metric.
+
+In the other hand if we would like to enhance the architecture we can try:
+
+- If we need a more scalable environment, maybe is necessary to deploy the models using an AKS (Azure Kubernetes System) instead of the used ACI.
+- If we are going to put this models in production we will need a more user friendly interface to consume the models, like a web page that, once the data is provided, would call the model webservice endpoint.
+- In order to get models that can be more deployable and architecture independent, we will need to export then as ONNX format.
+
+
