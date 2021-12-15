@@ -1,0 +1,21 @@
+name: my-AutoML-environment
+dependencies:
+
+- python=3.6.9
+
+- pip:
+
+    - azureml-defaults
+    - azureml-automl-core
+    - azureml-automl-runtime
+- joblib
+- numpy
+- pandas
+- scikit-learn
+- xgboost
+- packaging
+
+channels:
+
+- anaconda
+- conda-forge
