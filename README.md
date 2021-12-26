@@ -118,9 +118,13 @@ With the model registered, the environment allocated and the python score script
 Once the deployment process finishes we can see the model endpoint as active:
 ![automl_active_endpoint](/screenshots/automl_endpoint_active.jpg)
 
-An after I have generated the webservice for the model endpoint, I can test it with some data from our dataset. As we can see in the following screenshot we get a response from the webservice with two predictions.
+And after I have generated the webservice for the model endpoint, I can test it with some data from our dataset. As we can see in the following screenshot we get a response from the webservice with two predictions.
 
 ![automl_webservice_response](/screenshots/automl_webservice_response.jpg)
+
+I have repeated this test simulaing an http request from a browser or web application, as it is shown in the following screenshot:
+
+![automl_webserve_request_byhttp](/screenshots/automl_webservice_byhttp.jpg)
 
 I have also tested the deployment in a Azure default environment with Scikit-learn (more information about Azure curated environments here: https://docs.microsoft.com/en-us/azure/machine-learning/concept-prebuilt-docker-images-inference#list-of-prebuilt-docker-images-for-inference). In this case a score script is not needed and a YAML configuration file either, so all this work is done by Azure only specifying the model_framework option as Model.Framework.SCIKITLEARN on the model registering configuration.
 
